@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Corseto – Photography</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --black:#0f0d0a;
+  --black2:#1a1712;
+  --gold:#e8b84b;
+  --cream:#f0ead8;
+  --cream-mid:rgba(240,234,216,0.55);
+  --border:rgba(232,184,75,0.18);
+}
+
+body{
+  background:var(--black);
+  color:var(--cream);
+  font-family:'Inter',sans-serif;
+}
+
+/* immagini migliorate */
+.port-bg img,
+.photo-placeholder img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:contrast(1.05) saturate(1.05);
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+
+.hero-left{
+  padding:8rem 3rem;
+}
+
+.hero-title{
+  font-weight:900;
+  font-size:clamp(4rem,8vw,7rem);
+}
+
+.hero-title em{color:var(--gold);font-style:normal;}
+
+.hero-right{
+  position:relative;
+}
+
+.hero-photo-grid{
+  position:absolute;
+  inset:0;
+  display:grid;
+  grid-template-rows:60% 40%;
+}
+
+.photo-sub{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+
+/* PORTFOLIO */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:4px;
+}
+
+.port-item{overflow:hidden;}
+
+.port-item:nth-child(1){grid-column:1/7;}
+.port-item:nth-child(2){grid-column:7/10;}
+.port-item:nth-child(3){grid-column:10/13;}
+.port-item:nth-child(4){grid-column:1/5;}
+.port-item:nth-child(5){grid-column:5/9;}
+.port-item:nth-child(6){grid-column:9/13;}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="hero-left">
+  <h1 class="hero-title">The city<br>through<br><em>my lens</em></h1>
+</div>
+
+<div class="hero-right">
+  <div class="hero-photo-grid">
+
+    <!-- GRANDE -->
+    <div class="photo-placeholder">
+      <img src="C:\Users\ckapp\Pictures\KEVIN CORSETO PHOTO\FOTO\DSC00139.jpg">
+    </div>
+
+    <div class="photo-sub">
+
+      <!-- FONTANA -->
+      <div class="photo-placeholder">
+        <img src="C:\Users\ckapp\Pictures\KEVIN CORSETO PHOTO\FOTO\DSC00265-3.jpg">
+      </div>
+
+      <!-- MUSEO ROSSO -->
+      <div class="photo-placeholder">
+        <img src="C:\Users\ckapp\Pictures\KEVIN CORSETO PHOTO\FOTO\DSC00850.jpg">
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+<!-- PORTFOLIO -->
+<section>
+
+<h2>Portfolio</h2>
+
+<div class="portfolio-grid">
+
+<div class="port-item">
+  <div class="port-bg">
+    <img src="C:\Users\ckapp\Pictures\KEVIN CORSETO PHOTO\FOTO\DSC02785.jpg">
+  </div>
+</div>
+
+<div class="port-item">
+  <div class="port-bg">
+    <img src="C:\Users\ckapp\Pictures\KEVIN CORSETO PHOTO\FOTO\DSC00296-2.jpg">
+  </div>
+</div>
+
+<div class="port-item">
+  <div class="port-bg">
+    <img src="C:\Users\ckapp\Pictures\KEVIN CORSETO PHOTO\FOTO\DSC00265-3.jpg">
+  </div>
+</div>
+
+<div class="port-item">
+  <div class="port-bg">
+    <img src="C:\Users\ckapp\Pictures\KEVIN CORSETO PHOTO\FOTO\DSC00412-3.jpg">
+  </div>
+</div>
+
+<div class="port-item">
+  <div class="port-bg">
+    <img src="C:\Users\ckapp\Pictures\KEVIN CORSETO PHOTO\FOTO\DSC00850.jpg">
+  </div>
+</div>
+
+<div class="port-item">
+  <div class="port-bg">
+    <img src="C:\Users\ckapp\Pictures\KEVIN CORSETO PHOTO\FOTO\DSC02493.jpg">
+  </div>
+</div>
+
+</div>
+
+</section>
+
+</body>
+</html>
