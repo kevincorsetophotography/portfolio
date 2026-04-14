@@ -1,174 +1,769 @@
 <!DOCTYPE html>
+
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Kevin Corseto – Photography</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-
+<meta content="Portfolio fotografico di Kevin Corseto: ritratti, street photography e reportage con un taglio pulito, deciso e riconoscibile." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-
 :root{
-  --black:#0f0d0a;
-  --black2:#1a1712;
-  --gold:#e8b84b;
-  --cream:#f0ead8;
-  --cream-mid:rgba(240,234,216,0.55);
-  --border:rgba(232,184,75,0.18);
+  --bg:#0e0b09;
+  --bg-2:#181411;
+  --bg-3:#221c17;
+  --text:#f3ecdc;
+  --muted:rgba(243,236,220,.64);
+  --soft:rgba(243,236,220,.28);
+  --accent:#e7b64c;
+  --line:rgba(231,182,76,.18);
+  --shadow:0 18px 50px rgba(0,0,0,.35);
 }
-
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  background:var(--black);
-  color:var(--cream);
-  font-family:'Inter',sans-serif;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  overflow-x:hidden;
 }
+a{color:inherit}
+img{display:block;max-width:100%}
 
-/* immagini migliorate */
-.port-bg img,
-.photo-placeholder img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:contrast(1.05) saturate(1.05);
+nav{
+  position:fixed; inset:0 0 auto 0; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.15rem 2rem;
+  background:linear-gradient(to bottom, rgba(14,11,9,.96), rgba(14,11,9,.35), transparent);
+  backdrop-filter: blur(8px);
 }
+.nav-logo{
+  text-decoration:none;
+  font-weight:900;
+  letter-spacing:.08em;
+  font-size:1.32rem;
+}
+.nav-logo span{color:var(--accent)}
+.nav-links{
+  display:flex; gap:2rem; list-style:none; margin:0; padding:0;
+}
+.nav-links a{
+  text-decoration:none;
+  font-size:.72rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--soft);
+  transition:color .2s ease;
+}
+.nav-links a:hover{color:var(--accent)}
 
-/* HERO */
 .hero{
   min-height:100vh;
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns: 1fr 1.15fr;
+  position:relative;
 }
-
 .hero-left{
-  padding:8rem 3rem;
+  padding:8.2rem 2.2rem 3rem 2.2rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  position:relative;
+  z-index:2;
 }
-
+.hero-tag{
+  margin:0 0 1rem 0;
+  font-size:.68rem;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
 .hero-title{
+  margin:0;
+  font-size:clamp(3.6rem,7.5vw,7.2rem);
+  line-height:.88;
+  letter-spacing:-.04em;
   font-weight:900;
-  font-size:clamp(4rem,8vw,7rem);
 }
-
-.hero-title em{color:var(--gold);font-style:normal;}
+.hero-title em{
+  font-style:normal;
+  color:var(--accent);
+}
+.hero-sub{
+  margin:1.4rem 0 0;
+  max-width:34rem;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:.96rem;
+}
+.hero-ctas{
+  display:flex; gap:.9rem; flex-wrap:wrap;
+  margin-top:2.2rem;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  text-decoration:none;
+  border-radius:999px;
+  padding:.95rem 1.25rem;
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  transition:transform .2s ease, opacity .2s ease, border-color .2s ease, color .2s ease, background .2s ease;
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--accent);
+  color:var(--bg);
+  font-weight:800;
+}
+.btn-primary:hover{transform:translateY(-1px); opacity:.95}
+.btn-ghost{
+  border:1px solid rgba(243,236,220,.25);
+  color:var(--text);
+  background:transparent;
+}
+.btn-ghost:hover{transform:translateY(-1px); border-color:var(--accent); color:var(--accent)}
 
 .hero-right{
   position:relative;
+  min-height:100vh;
+  overflow:hidden;
 }
-
+.hero-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(to right, rgba(14,11,9,.88) 0%, rgba(14,11,9,.2) 45%, rgba(14,11,9,.05) 100%);
+  z-index:1;
+  pointer-events:none;
+}
 .hero-photo-grid{
-  position:absolute;
-  inset:0;
+  position:absolute; inset:0;
   display:grid;
-  grid-template-rows:60% 40%;
+  grid-template-rows: 58% 42%;
 }
-
+.photo-frame{
+  position:relative;
+  overflow:hidden;
+  background:var(--bg-2);
+}
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  transform:scale(1.001);
+  transition:transform .45s ease, filter .45s ease;
+  filter:contrast(1.04) saturate(1.04);
+}
+.photo-frame img.focus-left,.photo-frame img.focus-up,.photo-frame img.focus-right{object-position:center center;}
+.photo-frame:hover img{transform:scale(1.045)}
+.photo-frame::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.22), transparent 48%);
+  pointer-events:none;
+}
 .photo-sub{
   display:grid;
   grid-template-columns:1fr 1fr;
+  gap:0;
+}
+.hero-caption{
+  position:absolute;
+  left:1rem;
+  bottom:1rem;
+  z-index:2;
+  font-size:.62rem;
+  text-transform:uppercase;
+  letter-spacing:.24em;
+  color:rgba(243,236,220,.68);
+  background:rgba(14,11,9,.35);
+  backdrop-filter: blur(4px);
+  padding:.45rem .55rem;
 }
 
-/* PORTFOLIO */
-.portfolio-grid{
+.counter-strip{
   display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:4px;
+  grid-template-columns: repeat(4, 1fr);
+  gap:1px;
+  background:var(--line);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.counter-item{
+  background:var(--bg-2);
+  padding:2rem 1.2rem;
+  text-align:center;
+}
+.counter-num{
+  display:block;
+  font-size:2.55rem;
+  line-height:1;
+  font-weight:900;
+  color:var(--accent);
+  letter-spacing:-.04em;
+}
+.counter-label{
+  margin-top:.45rem;
+  display:block;
+  font-size:.64rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--muted);
 }
 
-.port-item{overflow:hidden;}
+section{padding:5.25rem clamp(2rem,4vw,4.75rem)}
+.section-tag{
+  margin:0 0 .9rem 0;
+  font-size:.65rem;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+.section-title{
+  margin:0 0 2.5rem 0;
+  font-weight:900;
+  line-height:.92;
+  letter-spacing:-.03em;
+  font-size:clamp(2.4rem,4.7vw,4.2rem);
+}
+.approach{
+  max-width:62rem;
+}
+.approach-card{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  padding:1.4rem 1.25rem;
+  box-shadow:var(--shadow);
+}
+.approach-card h3{
+  margin:.1rem 0 1rem;
+  font-size:1.55rem;
+  line-height:1.15;
+}
+.approach-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.8;
+  max-width:50rem;
+}
 
-.port-item:nth-child(1){grid-column:1/7;}
-.port-item:nth-child(2){grid-column:7/10;}
-.port-item:nth-child(3){grid-column:10/13;}
-.port-item:nth-child(4){grid-column:1/5;}
-.port-item:nth-child(5){grid-column:5/9;}
-.port-item:nth-child(6){grid-column:9/13;}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  border:1px solid var(--line);
+  background:var(--line);
+  overflow:hidden;
+}
+.service-card{
+  background:var(--bg-2);
+  padding:2rem 1.35rem;
+  transition:background .2s ease;
+}
+.service-card:hover{background:#201a15}
+.service-num{
+  font-size:2.8rem;
+  font-weight:900;
+  line-height:1;
+  color:rgba(231,182,76,.12);
+  margin-bottom:1rem;
+}
+.service-name{font-size:1.02rem; font-weight:700; margin-bottom:.7rem}
+.service-desc{margin:0 0 1.2rem; color:var(--muted); line-height:1.7; font-size:.84rem}
+.service-price{font-size:1.35rem; font-weight:900; color:var(--accent)}
 
+.portfolio-section{padding-top:2.5rem}
+.portfolio-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-bottom:1.4rem;
+}
+.section-note{
+  color:var(--muted);
+  font-size:.88rem;
+  line-height:1.65;
+  max-width:40rem;
+  margin-top:.7rem;
+}
+.grid-12{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.card{
+  position:relative;
+  overflow:hidden;
+  background:var(--bg-2);
+  aspect-ratio:4/5;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
+.card.big,.card.tall,.card.medium{aspect-ratio:4/5}
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s ease, filter .5s ease;
+  filter:contrast(1.04) saturate(1.05);
+}
+.card:hover img{transform:scale(1.05)}
+.card::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.28), transparent 50%);
+  pointer-events:none;
+}
+.card-caption{
+  position:absolute; left:12px; bottom:12px; right:12px;
+  z-index:2;
+  display:flex; flex-direction:column; gap:.35rem;
+}
+.card-kicker{
+  font-size:.6rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(243,236,220,.72);
+}
+.card-title{
+  font-size:.9rem;
+  font-weight:700;
+  line-height:1.25;
+  text-shadow:0 2px 14px rgba(0,0,0,.5);
+}
+.card-tag{
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:2;
+  font-size:.58rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:.35rem .5rem;
+  border-radius:999px;
+  background:rgba(231,182,76,.95);
+  color:#120f0b;
+  font-weight:800;
+}
+.card-1,.card-2,.card-3,.card-4,.card-5,.card-6{grid-column:auto}
+
+.secondary-grid{
+  margin-top:6px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.secondary-grid .card{aspect-ratio:4/5}
+
+.contact-section{
+  background:var(--bg-2);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+  gap:clamp(2rem,4vw,4.5rem);
+  align-items:start;
+  padding:clamp(2.8rem,5vw,5rem) clamp(2rem,4vw,4.75rem);
+}
+.contact-section > section{
+  padding:0;
+  min-width:0;
+}
+.contact-sub{color:var(--muted); line-height:1.8; max-width:38rem; margin:0 0 2rem}
+.contact-list{display:grid; gap:.85rem}
+.contact-row{
+  display:flex; align-items:center; gap:.9rem;
+  color:var(--muted); font-size:.92rem;
+}
+.contact-icon{
+  width:34px; height:34px; flex:0 0 34px;
+  display:grid; place-items:center;
+  border:1px solid var(--line);
+  color:var(--accent);
+  font-weight:800;
+  font-size:.76rem;
+}
+.form{
+  display:grid;
+  gap:1rem;
+}
+.form-field{
+  display:grid;
+  gap:.45rem;
+}
+.form-label{
+  font-size:.62rem;
+  text-transform:uppercase;
+  letter-spacing:.28em;
+  color:rgba(243,236,220,.42);
+}
+.form-input{
+  width:100%;
+  border-radius:0;
+  border:1px solid rgba(231,182,76,.18);
+  background:rgba(255,255,255,.03);
+  color:var(--text);
+  padding:.95rem 1rem;
+  font:inherit;
+  outline:none;
+}
+.form-input:focus{border-color:var(--accent)}
+textarea.form-input{min-height:120px; resize:vertical}
+
+footer{
+  padding:1.8rem clamp(2rem,4vw,4.75rem) 2.2rem;
+  display:flex;
+  gap:1rem;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:.72rem;
+  letter-spacing:.12em;
+}
+.footer-logo{font-weight:900; color:var(--text); font-size:1.12rem}
+.footer-logo span{color:var(--accent)}
+.social-links{display:flex; gap:1.2rem; flex-wrap:wrap}
+.social-links a{text-decoration:none; color:var(--muted); text-transform:uppercase; font-size:.62rem; letter-spacing:.2em}
+.social-links a:hover{color:var(--accent)}
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(7,6,5,.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:1.2rem;
+  z-index:2000;
+}
+.lightbox.open{display:flex}
+.lightbox-inner{
+  position:relative;
+  max-width:min(1200px, 96vw);
+  max-height:92vh;
+}
+.lightbox-inner img{
+  max-width:100%;
+  max-height:92vh;
+  object-fit:contain;
+  box-shadow:0 22px 80px rgba(0,0,0,.55);
+}
+.lightbox-caption{
+  margin-top:.75rem;
+  color:rgba(243,236,220,.72);
+  font-size:.78rem;
+  letter-spacing:.08em;
+  text-align:center;
+}
+.lightbox-close{
+  position:absolute;
+  top:-12px;
+  right:-12px;
+  width:36px; height:36px;
+  border:none;
+  border-radius:999px;
+  background:var(--accent);
+  color:#130f0b;
+  font-size:1rem;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+}
+
+@media (max-width: 980px){
+  .hero{grid-template-columns:1fr}
+  .hero-left{padding-top:7.6rem; min-height:auto}
+  .hero-right{min-height:58vw}
+  .counter-strip{grid-template-columns:repeat(2,1fr)}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-section{grid-template-columns:1fr}
+  .grid-12{grid-template-columns:repeat(2,1fr)}
+  .card-1,.card-2,.card-3,.card-4,.card-5,.card-6{grid-column:auto}
+  .secondary-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width: 700px){
+  nav{padding:1rem 1rem}
+  .nav-links{display:none}
+  .hero-left{padding:7rem 1rem 2.2rem}
+  .hero-sub{max-width:none}
+  .hero-right{min-height:72vw}
+  section{padding:4rem 1rem}
+  .contact-section{padding:3rem 1rem; grid-template-columns:1fr}
+  .counter-strip{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .grid-12{grid-template-columns:1fr}
+  .secondary-grid{grid-template-columns:1fr}
+  footer{padding:1.4rem 1rem 2rem; text-align:center; justify-content:center}
+}
 </style>
 </head>
-
 <body>
-
-<!-- HERO -->
-<section class="hero">
-
+<nav>
+<a class="nav-logo" href="#home">Kevin<span>.</span>Corseto</a>
+<ul class="nav-links">
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#servizi">Servizi</a></li>
+<li><a href="#contatti">Contatti</a></li>
+</ul>
+</nav>
+<section class="hero" id="home">
 <div class="hero-left">
-  <h1 class="hero-title">The city<br>through<br><em>my lens</em></h1>
+<p class="hero-tag">Fotografo — Torino, IT</p>
+<h1 class="hero-title">La città<br/>attraverso<br/><em>il mio sguardo</em></h1>
+<p class="hero-sub">Ritratti, street e reportage con un taglio pulito e diretto.</p>
+<div class="hero-ctas">
+<a class="btn btn-primary" href="#portfolio">Vedi il portfolio →</a>
+<a class="btn btn-ghost" href="#contatti">Prenota una sessione</a>
 </div>
-
+</div>
 <div class="hero-right">
-  <div class="hero-photo-grid">
-
-    <!-- GRANDE -->
-    <div class="photo-placeholder">
-      <img src="FOTO\DSC00139.jpg">
-    </div>
-
-    <div class="photo-sub">
-
-      <!-- FONTANA -->
-      <div class="photo-placeholder">
-        <img src="FOTO\DSC00265-3.jpg">
-      </div>
-
-      <!-- MUSEO ROSSO -->
-      <div class="photo-placeholder">
-        <img src="FOTO\DSC00850.jpg">
-      </div>
-
-    </div>
-
-  </div>
+<div class="hero-overlay"></div>
+<div class="hero-photo-grid">
+<div class="photo-frame" data-caption="Ritratto urbano" data-lightbox="">
+<img alt="Ritratto urbano" loading="eager" src="FOTO/DSC00139.jpg" class="focus-right"/>
+<span class="hero-caption">Torino, 2024</span>
 </div>
-
+<div class="photo-sub">
+<div class="photo-frame" data-caption="Ritratto all’aperto" data-lightbox="">
+<img alt="Ritratto al parco" loading="eager" src="FOTO/DSC00265-3.jpg" class="focus-left"/>
+</div>
+<div class="photo-frame" data-caption="Ritratto con sfondo architettonico" data-lightbox="">
+<img alt="Ritratto in esterno" loading="eager" src="FOTO/DSC01841.jpg" class="focus-up"/>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-<!-- PORTFOLIO -->
+<div class="counter-strip">
+<div class="counter-item">
+<span class="counter-num">3+</span>
+<span class="counter-label">Anni di esperienza</span>
+</div>
+<div class="counter-item">
+<span class="counter-num">150+</span>
+<span class="counter-label">Sessioni realizzate</span>
+</div>
+<div class="counter-item">
+<span class="counter-num">2</span>
+<span class="counter-label">Specializzazioni</span>
+</div>
+<div class="counter-item">
+<span class="counter-num">100%</span>
+<span class="counter-label">Approccio su misura</span>
+</div>
+</div>
+<section class="approach">
+<p class="section-tag">Approccio</p>
+<h2 class="section-title">Non scatto foto. Costruisco immagini.</h2>
+<div class="approach-card">
+<h3>Ogni shooting ha un obiettivo preciso: far emergere presenza e carattere.</h3>
+<p>Lavoro con luce, composizione e contesto per ottenere immagini forti ma leggibili, utili a chi deve presentarsi bene online, promuovere un progetto o costruire una presenza visiva credibile.</p>
+</div>
+</section>
+<section id="servizi">
+<p class="section-tag">Cosa offro</p>
+<h2 class="section-title">Servizi &amp; Tariffe</h2>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-num">01</div>
+<div class="service-name">Headshot professionale</div>
+<p class="service-desc">Sessione breve e diretta, ideale per LinkedIn, CV, press kit o profili professionali. Immagini pulite, credibili e pronte all’uso.</p>
+<div class="service-price">Da 150€</div>
+</div>
+<div class="service-card">
+<div class="service-num">02</div>
+<div class="service-name">Ritratto individuale</div>
+<p class="service-desc">Ritratto ambientato in location concordata a Torino. Pensato per chi vuole un’immagine personale ma con forte identità visiva.</p>
+<div class="service-price">Da 200€</div>
+</div>
+<div class="service-card">
+<div class="service-num">03</div>
+<div class="service-name">Shooting creator &amp; brand</div>
+<p class="service-desc">Contenuti per social, campagne, lookbook e personal branding. Sequenza di immagini coerente, versatile e orientata alla comunicazione.</p>
+<div class="service-price">Da 280€</div>
+</div>
+<div class="service-card">
+<div class="service-num">04</div>
+<div class="service-name">Reportage &amp; eventi</div>
+<p class="service-desc">Copertura di momenti live, serate, eventi e scene di gruppo con taglio naturale, dinamico e narrativo.</p>
+<div class="service-price">Su richiesta</div>
+</div>
+</div>
+</section>
+<section class="portfolio-section" id="portfolio">
+<div class="portfolio-header">
+<div>
+<p class="section-tag">Lavori selezionati</p>
+<h2 class="section-title">Portfolio</h2>
+</div>
+<a class="btn btn-ghost" href="https://www.instagram.com/phemto.kev/" rel="noreferrer" target="_blank">Vedi su Instagram →</a>
+</div>
+<div class="grid-12">
+<div class="card big card-1" data-caption="Ritratto street" data-lightbox="">
+<img alt="Ritratto street con giacca in pelle" loading="lazy" src="FOTO/DSC00393-2.jpg"/>
+<span class="card-tag">Street</span>
+<div class="card-caption"><span class="card-kicker">Street</span><span class="card-title">Ritratto street</span></div>
+</div>
+<div class="card tall card-2" data-caption="Ritratto urbano" data-lightbox="">
+<img alt="Ritratto urbano in città" loading="lazy" src="FOTO/DSC00296-2.jpg"/>
+<span class="card-tag">Ritratto</span>
+<div class="card-caption"><span class="card-kicker">Urbano</span><span class="card-title">Ritratto urbano</span></div>
+</div>
+<div class="card tall card-3" data-caption="Ritratto lifestyle" data-lightbox="">
+<img alt="Ritratto su scala storica" loading="lazy" src="FOTO/DSC00412-3.jpg"/>
+<span class="card-tag">Ritratto</span>
+<div class="card-caption"><span class="card-kicker">Lifestyle</span><span class="card-title">Ritratto lifestyle</span></div>
+</div>
+<div class="card tall card-4" data-caption="Ritratto editoriale" data-lightbox="">
+<img alt="Ritratto editoriale con sfondo arancione" loading="lazy" src="FOTO/DSC00567.jpg"/>
+<span class="card-tag">Ritratto</span>
+<div class="card-caption"><span class="card-kicker">Editoriale</span><span class="card-title">Ritratto editoriale</span></div>
+</div>
+<div class="card tall card-5" data-caption="Ritratto di coppia" data-lightbox="">
+<img alt="Ritratto di coppia al lago" loading="lazy" src="FOTO/DSC01582.jpg"/>
+<span class="card-tag">Ritratto</span>
+<div class="card-caption"><span class="card-kicker">Coppia</span><span class="card-title">Ritratto di coppia</span></div>
+</div>
+<div class="card big card-6" data-caption="Mercato notturno" data-lightbox="">
+<img alt="Scena urbana" loading="lazy" src="FOTO/DSC02493.jpg"/>
+<span class="card-tag">Street</span>
+<div class="card-caption"><span class="card-kicker">Street</span><span class="card-title">Scena urbana</span></div>
+</div>
+</div>
+</section>
 <section>
-
-<h2>Portfolio</h2>
-
-<div class="portfolio-grid">
-
-<div class="port-item">
-  <div class="port-bg">
-    <img src="FOTO\DSC02785.jpg">
-  </div>
+<div class="portfolio-header">
+<div>
+<p class="section-tag">Altri lavori</p>
+<h2 class="section-title">Reportage e contesto</h2>
 </div>
-
-<div class="port-item">
-  <div class="port-bg">
-    <img src="FOTO\DSC00296-2.jpg">
-  </div>
 </div>
-
-<div class="port-item">
-  <div class="port-bg">
-    <img src="FOTO\DSC00265-3.jpg">
-  </div>
+<div class="secondary-grid">
+<div class="card medium" data-caption="Ritratto indoor" data-lightbox="">
+<img alt="Ritratto in interno" loading="lazy" src="FOTO/DSC00913.jpg" class="focus-left"/>
+<span class="card-tag">Ritratto</span>
+<div class="card-caption"><span class="card-kicker">Interno</span><span class="card-title">Ritratto in interno</span></div>
 </div>
-
-<div class="port-item">
-  <div class="port-bg">
-    <img src="FOTO\DSC00412-3.jpg">
-  </div>
+<div class="card medium" data-caption="Canale e architettura" data-lightbox="">
+<img alt="Canale e architettura" loading="lazy" src="FOTO/DSC02302.jpg"/>
+<span class="card-tag">Viaggio</span>
+<div class="card-caption"><span class="card-kicker">Viaggio</span><span class="card-title">Canale e architettura</span></div>
 </div>
-
-<div class="port-item">
-  <div class="port-bg">
-    <img src="FOTO\DSC00850.jpg">
-  </div>
+<div class="card medium" data-caption="Dettaglio urbano" data-lightbox="">
+<img alt="Dettaglio urbano" loading="lazy" src="FOTO/DSC02419.jpg"/>
+<span class="card-tag">Dettaglio</span>
+<div class="card-caption"><span class="card-kicker">Urbano</span><span class="card-title">Fontana e tram</span></div>
 </div>
-
-<div class="port-item">
-  <div class="port-bg">
-    <img src="FOTO\DSC02493.jpg">
-  </div>
+<div class="card medium" data-caption="Momento di gioco" data-lightbox="">
+<img alt="Momento di gioco" loading="lazy" src="FOTO/DSC02654-2.jpg"/>
+<span class="card-tag">Evento</span>
+<div class="card-caption"><span class="card-kicker">Evento</span><span class="card-title">Momento di gioco</span></div>
 </div>
-
+<div class="card medium" data-caption="Risate al tavolo" data-lightbox="">
+<img alt="Risate al tavolo" loading="lazy" src="FOTO/DSC02667.jpg"/>
+<span class="card-tag">Evento</span>
+<div class="card-caption"><span class="card-kicker">Spontaneo</span><span class="card-title">Risate al tavolo</span></div>
 </div>
-
+<div class="card medium" data-caption="Santuario nel bosco" data-lightbox="">
+<img alt="Torii nel bosco" loading="lazy" src="FOTO/DSC03064.jpg"/>
+<span class="card-tag">Viaggio</span>
+<div class="card-caption"><span class="card-kicker">Viaggio</span><span class="card-title">Santuario nel bosco</span></div>
+</div>
+</div>
+</section><div class="contact-section" id="contatti">
+<section style="padding:0">
+<p class="section-tag">Lavoriamo insieme</p>
+<h2 class="section-title">Prenota una sessione</h2>
+<p class="contact-sub">Hai un progetto in mente? Scrivimi: troviamo insieme il formato giusto.</p>
+<div class="contact-list">
+<div class="contact-row"><div class="contact-icon">@</div><span>kevincorseto.photography@gmail.com</span></div>
+<div class="contact-row"><div class="contact-icon">IG</div><span>@phemto.kev</span></div>
+<div class="contact-row"><div class="contact-icon">T</div><span>+39 345 2428367</span></div>
+<div class="contact-row"><div class="contact-icon">↟</div><span>Torino, Piemonte</span></div>
+</div>
 </section>
+<section style="padding:0">
+<div class="form">
+<div class="form-field">
+<label class="form-label">Nome</label>
+<input class="form-input" placeholder="Il tuo nome" type="text"/>
+</div>
+<div class="form-field">
+<label class="form-label">Email</label>
+<input class="form-input" placeholder="tua@email.com" type="email"/>
+</div>
+<div class="form-field">
+<label class="form-label">Servizio di interesse</label>
+<input class="form-input" placeholder="Headshot, ritratto, brand, evento..." type="text"/>
+</div>
+<div class="form-field">
+<label class="form-label">Messaggio</label>
+<textarea class="form-input" placeholder="Raccontami il progetto..."></textarea>
+</div>
+<button class="btn btn-primary" type="button">Invia richiesta →</button>
+</div>
+</section>
+</div>
+<footer>
+<div class="footer-logo">Kevin<span>.</span>Corseto</div>
+<div class="social-links">
+<a href="https://www.instagram.com/phemto.kev/" rel="noreferrer" target="_blank">Instagram</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#contatti">Contatti</a>
+</div>
+<span>© 2025 Kevin Corseto. Tutti i diritti riservati.</span>
+</footer>
+<div aria-hidden="true" class="lightbox" id="lightbox">
+<div class="lightbox-inner">
+<button aria-label="Chiudi" class="lightbox-close" id="lightboxClose">×</button>
+<img alt="" id="lightboxImg"/>
+<div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+</div>
+<script>
+(function() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const closeBtn = document.getElementById('lightboxClose');
 
+  function openLightbox(src, alt, caption) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightboxCaption.textContent = caption || alt || '';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+    lightboxCaption.textContent = '';
+  }
+
+  document.querySelectorAll('[data-lightbox]').forEach(el => {
+    el.addEventListener('click', () => {
+      const img = el.querySelector('img');
+      openLightbox(img.src, img.alt, el.dataset.caption);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+})();
+</script>
 </body>
 </html>
